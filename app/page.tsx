@@ -48,7 +48,11 @@ export default function Home() {
               toast.dismiss(toastId);
               router.push("/dash");
               
-            } else throw new Error("Something went wrong in the API");
+            } else {
+              throw new Error("Something went wrong in the API")
+              toast.dismiss(toastId);
+              toast.error("Something went wrong in our servers")
+            };
           });
       })
       .catch((error) => {
@@ -128,13 +132,13 @@ export default function Home() {
       {/* Hero Section */}
 
       <p className="text-md text-red-500 p-1 px-3 rounded-full bg-red-100 font-[400] mt-[90px]">
-        $5 Price Chinese New Year Sale
+        ${process.env.NEXT_PUBLIC_AMOUNT} Price Chinese New Year Sale
       </p>
       <h1 className="font-[500] leading-[60px] text-[70px] text-gray-900 text-center mt-8">
         The only habit tracker that <br /> <span className="text-greeny">pays you</span> back.
       </h1>
       <p className="text-xl text-gray-600 font-[400] mt-10">
-        Pay $5 to start. Complete a 50-day streak, and we’ll refund your $5.
+        Pay ${process.env.NEXT_PUBLIC_AMOUNT} to start. Complete a 50-day streak, and we’ll refund your ${process.env.NEXT_PUBLIC_AMOUNT}.
       </p>
       <button
         onClick={onSignUp}
@@ -181,9 +185,9 @@ export default function Home() {
             <div className="w-16 h-16 bg-greeny/20 text-green-500 text-primaryt rounded-xl flex items-center justify-center text-xl font-bold">
               1
             </div>
-            <h3 className="text-xl font-[500] mt-4">Invest $5</h3>
+            <h3 className="text-xl font-[500] mt-4">Invest ${process.env.NEXT_PUBLIC_AMOUNT}</h3>
             <p className="text-gray-600 mt-2">
-              Commit to your goals by investing $5 to start your habit journey.
+              Commit to your goals by investing ${process.env.NEXT_PUBLIC_AMOUNT} to start your habit journey.
             </p>
           </div>
           <div className="flex flex-col items-center text-center border-2 rounded-xl p-6">
@@ -201,7 +205,7 @@ export default function Home() {
             </div>
             <h3 className="text-xl font-[500] mt-4">Get Your Refund</h3>
             <p className="text-gray-600 mt-2">
-              Complete a 50-day streak and receive your $5 refund  and still keep the account.
+              Complete a 50-day streak and receive your ${process.env.NEXT_PUBLIC_AMOUNT} refund  and still keep the account.
             </p>
           </div>
         </div>
@@ -211,8 +215,8 @@ export default function Home() {
       <div id="pricing" className="mt-8">
 
         <div className="flex flex-col items-center border-2 border-primary rounded-xl p-6">
-          <h3 className="text-xl"><span className="text-4xl font-[400]">$5</span><span className="text-greyy">/ forever</span></h3>
-          <p className="text-blacky mt-2">Just $5 to kickstart your habit journey.</p>
+          <h3 className="text-xl"><span className="text-4xl font-[400]">${process.env.NEXT_PUBLIC_AMOUNT}</span><span className="text-greyy">/ forever</span></h3>
+          <p className="text-blacky mt-2">Just ${process.env.NEXT_PUBLIC_AMOUNT} to kickstart your habit journey.</p>
 
           <button
             onClick={onSignUp}

@@ -13,6 +13,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { Elements, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react"
 
 const font = Lexend_Deca({ subsets: ["latin"], weight: ["300", "400", "500"] });
 
@@ -20,7 +21,7 @@ export const RootContext = createContext<any>("");
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
-const amount = 5.0;
+const amount = Number(process.env.NEXT_PUBLIC_AMOUNT) ?? 5.0;
 
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
   throw new Error("NOT DEFINED")
@@ -140,7 +141,7 @@ const CheckoutPage = ({ amount, userEmail }: any) => {
 
 
   return <form className="flex flex-col space-y-4 w-[500px]" onSubmit={handleSubmit}>
-    <h1 className="font-[400] text-xl">Total $5</h1>
+    <h1 className="font-[400] text-xl">Total ${process.env.NEXT_PUBLIC_AMOUNT}</h1>
     {clientS ? <PaymentElement /> : <div className="w-full flex justify-center"><span className="loader"></span></div>}
     <button className="text-white bg-blacky p-2 px-3 rounded-xl font-[400]" disabled={!stripe || loading}>{!loading ? `Pay $${amount}` : "Processing..."}</button>
   </form>
@@ -210,9 +211,12 @@ export default function RootLayout({
 
   return (
     <html className={font.className} lang="en">
+      <Analytics/>
+      
       <body className="bg-main w-screen h-screen font-[300] text-blacky">
         <head>
           <title>HabitFundr - Keep yourself habits in check</title>
+          <meta name="google-site-verification" content="7yFfRYShZ_OfUAG1QghO7gl5cABlMcOYPR-LWstOJTo" />
           <meta
             name="description"
             content="HabitFundr helps you build better habits, stay consistent, and achieve your goals with ease. Track your progress and create a better you!"

@@ -15,10 +15,10 @@ export async function POST(req: Request) {
     if (data) {
         //user exists, just sign in
 
-        toRes = {what: "have"}
+     
 
 
-
+        return NextResponse.json({ what: "alrdy user" });
     } else {
         //make new user
 
@@ -29,17 +29,15 @@ export async function POST(req: Request) {
             email,
             habits: [],
             refund: "x",
-            payed: false,
-
-           
+            payed: false,           
         })
 
         await person.save()
 
-        toRes = {what: "new one"}
+        return NextResponse.json({ what: "new user" });
     }
 
 
 
-    return NextResponse.json({ toRes });
+    
 }

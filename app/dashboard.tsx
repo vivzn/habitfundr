@@ -59,8 +59,8 @@ const Dashboard: React.FC<any> = ({ children }) => {
                         .catch(function (error) {
                             console.log(error);
                         });
-                }} className='flex space-x-4 hover items-center rounded-lg justify-between w-fit border-2 border-secondary px-4 p-4'>
-                    <Image className='rounded-lg' width={40} height={40} src={user?.photoURL} alt='user pfp' />
+                }} className='flex space-x-4 hover hover:bg-black/5 items-center rounded-lg justify-between w-fit border-2 border-secondary px-4 p-4'>
+                    <Image className='rounded-lg' width={40} height={40} src={user_?.photoURL} alt='user pfp' />
                     <SignOut weight='fill' className='size-6 text-greyy' />
                 </div>
             </div>
