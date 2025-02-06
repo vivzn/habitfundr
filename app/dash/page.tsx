@@ -98,6 +98,9 @@ const Dash: React.FC = () => {
   +   // Optimistically update habits locally
       setHabits((prev: any) => [...prev, newHabit]);
   
+
+
+      //
       axios
         .post("/api/create-habit", {
           email: user?.email,
